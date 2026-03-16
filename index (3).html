@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amar Colombia – Agencia de Turismo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --amarillo: #FFD447;
+    --rojo: #E8372C;
+    --azul: #1a1f6e;
+    --crema: #FFF8ED;
+    --blanco: #FFFFFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--crema);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ===== 1. HERO — LOGO CON FONDO BLANCO ===== */
+  .hero-section {
+    background: var(--blanco);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px 32px;
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+    position: relative;
+  }
+
+  .hero-logo {
+    width: 260px;
+    max-width: 80vw;
+    display: block;
+    animation: fadeUp 0.7s ease both;
+  }
+
+  /* Foto de Gloria tipo perfil — esquina superior derecha */
+  .gloria-profile-pic {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+    border: 3px solid var(--blanco);
+    box-shadow: 0 4px 18px rgba(26,31,110,0.22);
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+
+  /* ===== 2. AVENTURA TAGLINE ===== */
+  .tagline-bar {
+    background: var(--azul);
+    text-align: center;
+    padding: 16px 20px;
+  }
+
+  .tagline-text {
+    color: var(--blanco);
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+
+  /* ===== 3. WHATSAPP CTA ===== */
+  .main {
+    padding: 24px 18px 36px;
+    max-width: 460px;
+    margin: 0 auto;
+  }
+
+  .whatsapp-cta {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #25D366;
+    color: var(--blanco);
+    text-decoration: none;
+    border-radius: 16px;
+    padding: 18px 22px;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+    animation: fadeUp 0.6s 0.2s ease both, pulse-wa 2.8s 1.5s ease-in-out infinite;
+    transition: transform 0.15s;
+  }
+
+  .whatsapp-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, transparent 55%);
+  }
+
+  .whatsapp-cta:active { transform: scale(0.97); }
+
+  .wa-icon { font-size: 2rem; flex-shrink: 0; position: relative; z-index: 1; }
+
+  .wa-text-block { text-align: left; position: relative; z-index: 1; }
+  .wa-main-text {
+    font-size: 1rem;
+    font-weight: 800;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .wa-sub-text {
+    font-size: 0.72rem;
+    font-weight: 600;
+    opacity: 0.9;
+    margin-top: 3px;
+  }
+
+  .wa-arrow { font-size: 1.3rem; margin-left: auto; position: relative; z-index: 1; }
+
+  /* ===== 4. DESTINOS ===== */
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--azul);
+    margin-bottom: 6px;
+    text-align: center;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+
+  .section-line {
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--rojo), var(--amarillo));
+    border-radius: 2px;
+    margin: 0 auto 18px;
+  }
+
+  .destinations-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 32px;
+    animation: fadeUp 0.6s 0.35s ease both;
+  }
+
+  .dest-card {
+    background: var(--blanco);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(10,46,110,0.10);
+    text-decoration: none;
+    transition: transform 0.2s;
+    display: block;
+  }
+
+  .dest-card:active { transform: scale(0.97); }
+
+  .dest-img-header {
+    height: 90px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .dest-img-header img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    inset: 0;
+    transition: transform 0.3s;
+  }
+
+  .dest-card:hover .dest-img-header img { transform: scale(1.07); }
+
+  .dest-card:nth-child(1) .dest-img-header { background: linear-gradient(135deg, #1E3A5F, #2E6EA6); }
+  .dest-card:nth-child(2) .dest-img-header { background: linear-gradient(135deg, #1E5C34, #2D9E5B); }
+  .dest-card:nth-child(3) .dest-img-header { background: linear-gradient(135deg, #7B2D8B, #B45CC0); }
+  .dest-card:nth-child(4) .dest-img-header { background: linear-gradient(135deg, #8B1A1A, #CC3333); }
+  .dest-card:nth-child(5) .dest-img-header { background: linear-gradient(135deg, #1A5276, #2E86C1); }
+  .dest-card:nth-child(6) .dest-img-header { background: linear-gradient(135deg, #0E6655, #1ABC9C); }
+
+  .dest-info { padding: 10px 11px 12px; }
+  .dest-name { font-weight: 800; font-size: 0.88rem; color: var(--azul); }
+  .dest-desc { font-size: 0.7rem; color: #777; margin-top: 3px; line-height: 1.4; }
+
+  /* ===== 5. FRASE GLORIA ===== */
+  .quote-box {
+    background: var(--azul);
+    border-radius: 20px;
+    padding: 26px 22px;
+    text-align: center;
+    color: var(--blanco);
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+
+  .quote-box::before {
+    content: '❝';
+    position: absolute;
+    top: -14px; left: 8px;
+    font-size: 100px;
+    opacity: 0.06;
+    font-family: serif;
+    line-height: 1;
+  }
+
+  .quote-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .quote-author {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--amarillo);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  /* ===== 6. REDES SOCIALES ===== */
+  .social-section {
+    animation: fadeUp 0.6s 0.45s ease both;
+    margin-bottom: 8px;
+  }
+
+  .social-group-label {
+    font-size: 0.68rem;
+    font-weight: 800;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    text-align: center;
+    margin: 16px 0 9px;
+  }
+
+  .social-row {
+    display: flex;
+    gap: 9px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 4px;
+  }
+
+  .social-btn {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--blanco);
+    border: 2px solid #E8EDF5;
+    border-radius: 50px;
+    padding: 10px 18px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--azul);
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(10,46,110,0.08);
+    transition: transform 0.15s;
+    white-space: nowrap;
+  }
+
+  .social-btn:active { transform: scale(0.95); }
+  .social-btn.tiktok  { border-color: #010101; }
+  .social-btn.instagram { border-color: #C13584; }
+  .social-btn.whatsapp  { border-color: #25D366; color: #128C7E; }
+
+  /* ===== FOOTER NEGRO ===== */
+  footer {
+    background: #000;
+    text-align: center;
+    padding: 28px 20px 24px;
+    margin-top: 10px;
+  }
+
+  footer img.footer-logo {
+    width: 180px;
+    max-width: 60vw;
+    display: block;
+    margin: 0 auto 10px;
+    opacity: 0.92;
+  }
+
+  footer p {
+    color: rgba(255,255,255,0.45);
+    font-size: 0.72rem;
+    line-height: 1.6;
+  }
+
+  footer strong { color: rgba(255,255,255,0.75); }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse-wa {
+    0%,100% { box-shadow: 0 6px 20px rgba(37,211,102,0.4); }
+    50%      { box-shadow: 0 6px 32px rgba(37,211,102,0.65), 0 0 0 7px rgba(37,211,102,0.1); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ① HERO — LOGO FONDO BLANCO -->
+<div class="hero-section">
+  <img src="logo.png" alt="Amar Colombia" class="hero-logo">
+  <img src="gloria.jpeg" alt="Gloria Batista" class="gloria-profile-pic">
+</div>
+
+<!-- ② TAGLINE -->
+<div class="tagline-bar">
+  <div class="tagline-text">🇨🇴 AQUÍ EMPIEZA TU PRÓXIMA AVENTURA ✈️</div>
+</div>
+
+<!-- ③ CONTENIDO PRINCIPAL -->
+<div class="main">
+
+  <!-- BOTÓN WHATSAPP -->
+  <a href="https://wa.me/573187420354?text=Hola❣️%2C%20vengo%20desde%20TikTok%20de%20Cartagena%20de%20Indias%20🇨🇴%20quiero%20información%20relacionada%20con%20tour%20o%20servicio%20(%20Especifica%20La%20ciudad%20(Cartagena%20-%20Santa%20Marta%20-%20Medellín%20-%20SAN%20Andres%20-%20Barranquilla%20y%20más%20)."
+     class="whatsapp-cta" target="_blank" rel="noopener">
+    <span class="wa-icon">💬</span>
+    <div class="wa-text-block">
+      <div class="wa-main-text">¡RESERVA POR WhatsApp!</div>
+      <div class="wa-sub-text">Escríbenos ya y asegura tu cupo</div>
+    </div>
+    <span class="wa-arrow">→</span>
+  </a>
+
+  <!-- ④ DESTINOS -->
+  <div class="section-title">Nuestros Destinos ✈️</div>
+  <div class="section-line"></div>
+
+  <div class="destinations-grid">
+
+    <a href="https://wa.me/573187420354?text=Hola❣️%2C%20vengo%20desde%20TikTok%20de%20Cartagena%20de%20Indias%20🇨🇴%20quiero%20información%20relacionada%20con%20tour%20o%20servicio%20en%20Cartagena." class="dest-card" target="_blank">
+      <div class="dest-img-header">
+        <img src="cartagena.webp" alt="Cartagena de Indias">
+      </div>
+      <div class="dest-info">
+        <div class="dest-name">🏰 Cartagena</div>
+        <div class="dest-desc">Ciudad amurallada y playas caribeñas</div>
+      </div>
+    </a>
+
+    <a href="https://wa.me/573187420354?text=Hola❣️%2C%20vengo%20desde%20TikTok%20de%20Cartagena%20de%20Indias%20🇨🇴%20quiero%20información%20relacionada%20con%20tour%20o%20servicio%20en%20Santa%20Marta." class="dest-card" target="_blank">
+      <div class="dest-img-header">
+        <img src="santamarta.png" alt="Santa Marta">
+      </div>
+      <div class="dest-info">
+        <div class="dest-name">🏖️ Santa Marta</div>
+        <div class="dest-desc">Tayrona, sierra nevada y mar azul</div>
+      </div>
+    </a>
+
+    <a href="https://wa.me/573187420354?text=Hola❣️%2C%20vengo%20desde%20TikTok%20de%20Cartagena%20de%20Indias%20🇨🇴%20quiero%20información%20relacionada%20con%20tour%20o%20servicio%20en%20Medellín." class="dest-card" target="_blank">
+      <div class="dest-img-header">
+        <img src="medellin.webp" alt="Medellín">
+      </div>
+      <div class="dest-info">
+        <div class="dest-name">🌺 Medellín</div>
+        <div class="dest-desc">Ciudad de la eterna primavera</div>
+      </div>
+    </a>
+
+    <a href="https://wa.me/573187420354?text=Hola❣️%2C%20vengo%20desde%20TikTok%20de%20Cartagena%20de%20Indias%20🇨🇴%20quiero%20información%20relacionada%20con%20tour%20o%20servicio%20en%20Bogotá." class="dest-card" target="_blank">
+      <div class="dest-img-header">
+        <img src="bogota.jpeg" alt="Bogotá">
+      </div>
+      <div class="dest-info">
+        <div class="dest-name">🏙️ Bogotá</div>
+        <div class="dest-desc">Capital histórica, arte y gastronomía</div>
+      </div>
+    </a>
+
+    <a href="https://wa.me/573187420354?text=Hola❣️%2C%20vengo%20desde%20TikTok%20de%20Cartagena%20de%20Indias%20🇨🇴%20quiero%20información%20relacionada%20con%20tour%20o%20servicio%20en%20Barranquilla." class="dest-card" target="_blank">
+      <div class="dest-img-header">
+        <img src="barranquilla.jpeg" alt="Barranquilla">
+      </div>
+      <div class="dest-info">
+        <div class="dest-name">🎉 Barranquilla</div>
+        <div class="dest-desc">Carnaval, sabor y alegría costeña</div>
+      </div>
+    </a>
+
+    <a href="https://wa.me/573187420354?text=Hola❣️%2C%20vengo%20desde%20TikTok%20de%20Cartagena%20de%20Indias%20🇨🇴%20quiero%20información%20relacionada%20con%20tour%20o%20servicio%20en%20San%20Andrés." class="dest-card" target="_blank">
+      <div class="dest-img-header">
+        <img src="sanandres.png" alt="San Andrés">
+      </div>
+      <div class="dest-info">
+        <div class="dest-name">🏝️ San Andrés</div>
+        <div class="dest-desc">Mar de 7 colores, buceo y descanso</div>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- ⑤ FRASE GLORIA -->
+  <div class="quote-box">
+    <div class="quote-text">
+      "Acompañamos tu viaje por Colombia con experiencias que enamoran."
+    </div>
+    <div class="quote-author">— Gloria Batista · Amar Colombia</div>
+  </div>
+
+  <!-- ⑥ REDES SOCIALES -->
+  <div class="social-section">
+    <div class="section-title" style="margin-bottom:4px;">Síguenos en Redes 📲</div>
+    <div class="section-line"></div>
+
+    <div class="social-group-label">🎵 TikTok</div>
+    <div class="social-row">
+      <a href="https://www.tiktok.com/@amar.colombia?is_from_webapp=1&sender_device=pc"
+         target="_blank" class="social-btn tiktok">🎵 Amar Colombia</a>
+      <a href="https://www.tiktok.com/@cartagenadeindias_?is_from_webapp=1&sender_device=pc"
+         target="_blank" class="social-btn tiktok">🎵 Cartagena de Indias</a>
+    </div>
+
+    <div class="social-group-label">📸 Instagram</div>
+    <div class="social-row">
+      <a href="https://www.instagram.com/amar.colombia?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+         target="_blank" class="social-btn instagram">📸 Amar Colombia</a>
+      <a href="https://www.instagram.com/amar.cartagenadeindias?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+         target="_blank" class="social-btn instagram">📸 Amar Cartagena</a>
+    </div>
+
+    <div class="social-group-label">💬 WhatsApp</div>
+    <div class="social-row">
+      <a href="https://wa.me/573187420354?text=Hola❣️%2C%20vengo%20desde%20TikTok%20de%20Cartagena%20de%20Indias%20🇨🇴%20quiero%20información%20relacionada%20con%20tour%20o%20servicio%20(%20Especifica%20La%20ciudad%20(Cartagena%20-%20Santa%20Marta%20-%20Medellín%20-%20SAN%20Andres%20-%20Barranquilla%20y%20más%20)."
+         target="_blank" class="social-btn whatsapp">💬 +57 318 742 0354</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- ⑦ FOOTER NEGRO CON LOGO BLANCO -->
+<footer>
+  <img src="logo_blanco.png" alt="Amar Colombia" class="footer-logo">
+  <p><strong>Amar Colombia</strong> · Agencia de Turismo<br>
+  Viaja, Siente, Enamórate de Colombia 🇨🇴✈️</p>
+</footer>
+
+</body>
+</html>
